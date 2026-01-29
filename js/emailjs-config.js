@@ -3,18 +3,18 @@
 const EMAILJS_CONFIG = {
     
     // Public Key
-    publicKey: 'u1loN7YwzBjci-TdO',
+    publicKey: 'sDNj9UkALizT65LCX',
     
     // Service IDs
     services: {
-        registration: 'service_flcb9tq',
-        reminder: 'service_flcb9tq'   // You can use same service
+        registration: 'service_d4xguel',
+        reminder: 'service_d4xguel'   // You can use same service
     },
     
     // Template IDs
     templates: {
-        registration: 'template_o895tyz',
-        reminder: 'template_o895tyz' // Same template for now
+        registration: 'template_v2f61e6',
+        reminder: 'template_v2f61e6' // Same template for now
     }
 };
 
