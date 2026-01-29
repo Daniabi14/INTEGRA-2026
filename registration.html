@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - INTEGRA 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <h1>INTEGRA 2026</h1>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container registration-container">
+        <h1 class="page-title">Team Registration</h1>
+
+        <form id="registrationForm">
+            <!-- College Information -->
+            <div class="form-section">
+                <h2>College Information</h2>
+                <div class="form-group">
+                    <label for="collegeName">College Name *</label>
+                    <input type="text" id="collegeName" name="collegeName" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-header"
+                    style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem;">
+                    <h2 style="margin: 0;">Participants</h2>
+                    <span id="participantCount" class="info-text" style="font-size: 0.9rem; color: #4b5563;">
+                        1/15 (Team Leader + 0 additional)
+                    </span>
+                </div>
+                <div class="participant-item">
+                    <h2>Participant 1 (Team Leader)</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="teamLeadName">Team Lead Name *</label>
+                            <input type="text" id="teamLeadName" name="teamLeadName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamLeadEmail">Email *</label>
+                            <input type="email" id="teamLeadEmail" name="teamLeadEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamLeadPhone">Phone Number *</label>
+                            <input type="tel" id="teamLeadPhone" name="teamLeadPhone" pattern="[0-9]{10}" required>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.9rem; color: #6b7280; margin: 0.75rem 0 0.5rem;">
+                        Select up to 4 events for Participant 1 (Team Leader).
+                    </p>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>Select Events (Maximum 4) *</label>
+                        <div class="events-selection events-grid" id="teamLeaderEvents">
+                            <label class="event-option">
+                                <input type="checkbox" class="team-leader-event" value="Project Expo">
+                                <div class="event-card">
+                                    <span class="event-name">Project Expo</span>
+                                    <span class="event-checkmark">✓</span>
+                                </div>
+                            </label>
+                            <label class="event-option">
+                                <input type="checkbox" class="team-leader-event" value="HackBlitz">
+                                <div class="event-card">
+                                    <span class="event-name">HackBlitz</span>
+                                    <span class="event-checkmark">✓</span>
+                                </div>
+                            </label>
+                            <label class="event-option">
+                                <input type="checkbox" class="team-leader-event" value="BrandCraft">
+                                <div class="event-card">
+                                    <span class="event-name">BrandCraft</span>
+                                    <span class="event-checkmark">✓</span>
+                                </div>
+                            </label>
+                            <label class="event-option">
+                                <input type="checkbox" class="team-leader-event" value="Web Solutions">
+                                <div class="event-card">
+                                    <span class="event-name">Web Solutions</span>
+                                    <span class="event-checkmark">✓</span>
+                                </div>
+                            </label>
+                            <label class="event-option">
+                                <input type="checkbox" class="team-leader-event" value="Digital Link">
+                                <div class="event-card">
+                                    <span class="event-name">Digital Link</span>
+                                    <span class="event-checkmark">✓</span>
+                                </div>
+                            </label>
+                            <label class="event-option">
+                                <input type="checkbox" class="team-leader-event" value="Software Showcase">
+                                <div class="event-card">
+                                    <span class="event-name">Software Showcase</span>
+                                    <span class="event-checkmark">✓</span>
+                                </div>
+                            </label>
+                            <label class="event-option">
+                                <input type="checkbox" class="team-leader-event" value="BrainBytes">
+                                <div class="event-card">
+                                    <span class="event-name">BrainBytes</span>
+                                    <span class="event-checkmark">✓</span>
+                                </div>
+                            </label>
+                            <label class="event-option">
+                                <input type="checkbox" class="team-leader-event" value="ReelRush">
+                                <div class="event-card">
+                                    <span class="event-name">ReelRush</span>
+                                    <span class="event-checkmark">✓</span>
+                                </div>
+                            </label>
+                        </div>
+                        <p id="teamLeaderEventCount" class="event-count-display">Selected: 0/4</p>
+                    </div>
+                </div>
+
+                <!-- Dynamic additional participants will be added here -->
+                <div id="participantsContainer"></div>
+
+                <!-- Participant Management Buttons - Appear below last participant -->
+                <div class="form-actions"
+                    style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; margin-bottom: 1.25rem;">
+                    <button type="button" class="btn btn-primary" id="addParticipantBtn"
+                        style="background: #10b981; border-color: #10b981;">Add Participant</button>
+                    <button type="button" class="btn btn-danger" id="removeParticipantBtn"
+                        style="background: #ef4444; border-color: #ef4444;">Remove Last Participant</button>
+                </div>
+                <p class="info-text" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 0.9rem;">
+                    You can add up to 14 more participants in addition to the Team Leader and also remove the last added
+                    participant if needed.
+                </p>
+            </div>
+
+            <!-- Staff Section -->
+            <div class="form-section">
+                <h2>Accompanying Staff (Optional)</h2>
+                <p class="info-text">Only one staff member is allowed per college. Staff members are allowed without
+                    registration fee.</p>
+                <div class="form-group">
+                    <label>Will you be bringing accompanying staff? *</label>
+                    <div class="radio-group" style="display: flex; gap: 2rem; margin-top: 0.5rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="radio" name="hasStaff" id="hasStaffYes" value="yes" style="width: auto;">
+                            <span>Yes</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="radio" name="hasStaff" id="hasStaffNo" value="no" checked style="width: auto;">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+                <div id="staffDetailsContainer" style="display: none; margin-top: 1rem;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Staff Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="staffName">Staff Name *</label>
+                            <input type="text" id="staffName" name="staffName" placeholder="Enter staff name">
+                        </div>
+                        <div class="form-group">
+                            <label for="staffPhone">Phone Number *</label>
+                            <input type="tel" id="staffPhone" name="staffPhone" pattern="[0-9]{10}"
+                                placeholder="Enter 10-digit phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="staffEmail">Email ID *</label>
+                            <input type="email" id="staffEmail" name="staffEmail" placeholder="Enter email address">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Section -->
+            <div class="form-section">
+                <h2>Payment</h2>
+                <div class="payment-info">
+                    <p><strong>Total Amount: ₹<span id="totalAmount">0</span></strong></p>
+                    <p>Payment Method: UPI/QR Code</p>
+                    <div class="payment-details">
+                        <p><strong>Pay to:</strong> Don Bosco College (Co-Ed), Yelagiri Hills</p>
+                        <p><strong>UPI ID:</strong> 9080928437@pz</p>
+                        <div id="paymentQR" class="qr-container" style="text-align: center; padding: 1rem;">
+                            <img id="paymentQRImage" src="" alt="Payment QR Code"
+                                style="max-width: 200px; height: auto; display: none;">
+                            <p id="qrPlaceholder" class="qr-placeholder">
+                                Payment QR code will appear here.
+                                <br>
+                                If you don't see a QR, use the UPI ID below.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="transactionId">Transaction ID *</label>
+                        <input type="text" id="transactionId" name="transactionId" required
+                            placeholder="Enter your UPI transaction ID">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="submitBtn">Complete Registration</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Registration Summary Modal -->
+    <div id="summaryModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registration Successful!</h2>
+            <div id="registrationSummary"></div>
+            <div class="modal-actions">
+                <a href="login.html" class="btn btn-primary">Go to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/registration.js"></script>
+</body>
+
+</html>

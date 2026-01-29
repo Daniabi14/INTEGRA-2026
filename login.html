@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - INTEGRA 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <h1>INTEGRA 2026</h1>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="registration.html" class="nav-link">Register</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container login-container">
+        <div class="login-wrapper">
+            <h1 class="page-title">Login</h1>
+
+            <div class="login-tabs">
+                <button class="login-tab active" data-role="participant">Participant</button>
+                <button class="login-tab" data-role="admin">Admin</button>
+                <button class="login-tab" data-role="coordinator">Coordinator</button>
+                <button class="login-tab" data-role="food">Food Coordinator</button>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required autocomplete="username" inputmode="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div id="coordinatorEventGroup" class="form-group" style="display: none;">
+                    <label for="coordinatorEvent">Event</label>
+                    <select id="coordinatorEvent" name="coordinatorEvent">
+                        <option value="">Select Event</option>
+                        <option value="Project Expo">Project Expo</option>
+                        <option value="HackBlitz">HackBlitz</option>
+                        <option value="BrandCraft">BrandCraft</option>
+                        <option value="Web Solutions">Web Solutions</option>
+                        <option value="Digital Link">Digital Link</option>
+                        <option value="Software Showcase">Software Showcase</option>
+                        <option value="BrainBytes">BrainBytes</option>
+                        <option value="ReelRush">ReelRush</option>
+                        <option value="Digital Don">Digital Don</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

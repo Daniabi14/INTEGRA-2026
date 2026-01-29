@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - INTEGRA 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>INTEGRA 2026 - Admin</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container dashboard-container">
+        <div class="dashboard-header">
+            <h1>Admin Dashboard</h1>
+        </div>
+
+        <!-- Overview Cards -->
+        <div class="overview-cards">
+            <div class="overview-card">
+                <h3>Total Teams</h3>
+                <p class="card-value" id="totalTeams">0</p>
+            </div>
+            <div class="overview-card">
+                <h3>Verified</h3>
+                <p class="card-value" id="verifiedTeams">0</p>
+            </div>
+            <div class="overview-card">
+                <h3>Pending</h3>
+                <p class="card-value" id="pendingTeams">0</p>
+            </div>
+            <div class="overview-card">
+                <h3>Revenue</h3>
+                <p class="card-value">₹<span id="totalRevenue">0</span></p>
+            </div>
+        </div>
+
+        <!-- Dashboard Tabs -->
+        <div class="dashboard-tabs">
+            <button class="tab-btn active" data-tab="registrations">Registrations</button>
+            <button class="tab-btn" data-tab="lots">Lots</button>
+            <button class="tab-btn" data-tab="food">Food</button>
+            <button class="tab-btn" data-tab="settings">Settings</button>
+            <button class="tab-btn" data-tab="feedback">Feedback</button>
+            <button class="tab-btn" data-tab="reports">Reports</button>
+            <button class="tab-btn" data-tab="credentials">Credentials</button>
+        </div>
+
+        <!-- Registrations Tab -->
+        <div class="tab-content active" id="registrations-content">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Registrations</h2>
+                    <div class="search-filter">
+                        <input type="text" id="searchRegistrations" placeholder="Search...">
+                        <select id="filterStatus">
+                            <option value="all">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="verified">Verified</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Reg ID</th>
+                                <th>Team Lead</th>
+                                <th>College</th>
+                                <th>Phone</th>
+                                <th>Events</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registrationsTableBody">
+                            <!-- Will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lots Tab -->
+        <div class="tab-content" id="lots-content">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Lot Assignment</h2>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn btn-primary" id="autoAssignLotsBtn">Auto Assign Lots</button>
+                        <button class="btn btn-secondary" id="viewAllParticipantsBtn">View All Participants</button>
+                    </div>
+                </div>
+
+                <!-- All Participants List (hidden by default) -->
+                <div id="allParticipantsSection" style="display: none; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">All Registered Participants & Their Events</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Reg ID</th>
+                                    <th>College</th>
+                                    <th>Participant Name</th>
+                                    <th>Phone</th>
+                                    <th>Events Selected</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allParticipantsTableBody">
+                                <!-- Will be populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="eventLotsContainer">
+                    <!-- Event-wise lot lists will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Food Tab -->
+        <div class="tab-content" id="food-content">
+            <div class="dashboard-card">
+                <h2>Food Summary</h2>
+                <p class="info-text">Token count = participants + staff. Scanner prevents duplicate redemption.</p>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Total</th>
+                                <th>Reg ID</th>
+                                <th>Team Lead</th>
+                                <th>College</th>
+                                <th>Redeemed</th>
+                            </tr>
+                        </thead>
+                        <tbody id="foodTableBody">
+                            <!-- Will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-content" id="settings-content">
+            <div class="dashboard-card">
+                <h2>Update Instructions & Venue</h2>
+                <form id="settingsForm">
+                    <div class="form-group">
+                        <label for="paymentQRUrl">Payment QR Code URL</label>
+                        <input type="url" id="paymentQRUrl" name="paymentQRUrl"
+                            placeholder="Enter URL to payment QR image">
+                        <p class="info-text">Upload your UPI QR code image and paste the URL here. This will be
+                            displayed on the registration page.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="venueInput">Venue</label>
+                        <textarea id="venueInput" name="venue" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="instructionsInput">Instructions</label>
+                        <textarea id="instructionsInput" name="instructions" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Event Timings</label>
+                        <div id="eventTimingsContainer">
+                            <!-- Event timings will be added dynamically -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="foodDeleteEnabled" name="foodDeleteEnabled">
+                            Allow Food Coordinator to delete / reset food token redemptions
+                        </label>
+                        <p class="info-text">Uncheck this to disable delete buttons in the Food Coordinator dashboard.
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Settings</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Feedback Tab -->
+        <div class="tab-content" id="feedback-content">
+            <!-- Feedback Settings -->
+            <div class="dashboard-card">
+                <h2>Feedback Settings</h2>
+                <form id="feedbackSettingsForm">
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="feedbackEnabled" name="feedbackEnabled">
+                            Enable Feedback Form (Enable at conclusion of event)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackQuestions">Feedback Questions (One per line) *</label>
+                        <textarea id="feedbackQuestions" name="feedbackQuestions" rows="10"
+                            placeholder="Enter feedback questions, one per line. Example:&#10;1. Overall Rating (1-5)&#10;2. How was your experience?&#10;3. Any suggestions for improvement?"></textarea>
+                        <p class="info-text">Each line will become a separate question. Use format: "Question text" or
+                            just the question.</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Feedback Settings</button>
+                </form>
+            </div>
+
+            <!-- View Feedback -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Submitted Feedback</h2>
+                    <button class="btn btn-primary" id="loadFeedbackBtn">Load Feedback</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>College</th>
+                                <th>Rating</th>
+                                <th>Responses</th>
+                                <th>Submitted At</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedbackTableBody">
+                            <!-- Will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Tab -->
+        <div class="tab-content" id="reports-content">
+            <div class="dashboard-card">
+                <h2>Export Reports</h2>
+                <div class="reports-grid">
+                    <button class="btn btn-secondary report-btn" data-report="registrations">Export Registrations
+                        CSV</button>
+                    <button class="btn btn-secondary report-btn" data-report="payments">Export Payments CSV</button>
+                    <button class="btn btn-secondary report-btn" data-report="food">Export Food Summary CSV</button>
+                    <button class="btn btn-secondary report-btn" data-report="tokens">Export Food Tokens CSV</button>
+                    <button class="btn btn-secondary report-btn" data-report="lots">Export Event Lots CSV</button>
+                    <button class="btn btn-secondary report-btn" data-report="attendance">Export Attendance CSV</button>
+                    <button class="btn btn-secondary report-btn" data-report="feedback">Export Feedback CSV</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credentials Tab -->
+        <div class="tab-content" id="credentials-content">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Participant Credentials</h2>
+                    <div class="search-filter">
+                        <input type="text" id="searchCredentials" placeholder="Search reg id / college / email...">
+                    </div>
+                </div>
+                <p class="info-text">
+                    These are the usernames and passwords assigned to teams. Use this view to help participants who
+                    forgot their login.
+                </p>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Reg ID</th>
+                                <th>College</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody id="credentialsTableBody">
+                            <!-- Will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/emailjs-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard-admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participant Dashboard - INTEGRA 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>INTEGRA 2026</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><span class="nav-link">Welcome, <span id="userName"></span></span></li>
+                <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container dashboard-container">
+        <div class="dashboard-header">
+            <h1>Welcome to INTEGRA 2026</h1>
+            <p class="reg-id">Registration ID: <strong id="regId"></strong></p>
+        </div>
+
+        <div class="dashboard-tabs">
+            <button class="tab-btn active" data-tab="details">Details</button>
+            <button class="tab-btn" data-tab="events">Events & Lots</button>
+            <button class="tab-btn" data-tab="food">Food Tokens</button>
+        </div>
+
+
+        <!-- Details Tab -->
+        <div class="tab-content active" id="details-content">
+            <div class="dashboard-card">
+                <h2>Registration Details</h2>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <label>Registration ID:</label>
+                        <span id="detailRegId">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>College:</label>
+                        <span id="detailCollege">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Participants Count:</label>
+                        <span id="detailParticipants">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Staff Count:</label>
+                        <span id="detailStaff">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Amount Paid:</label>
+                        <span id="detailAmount">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Payment Status:</label>
+                        <span id="detailPaymentStatus" class="status-badge">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h2>Important Information</h2>
+                <ul class="info-list">
+                    <li>Carry this registration ID for all events</li>
+                    <li>Food tokens are issued for participants + staff</li>
+                    <li>Lot numbers will be displayed once assigned by admin</li>
+                    <li>Venue details are shown only after login</li>
+                    <li>Every participant should submit the feedback form after the events</li>
+                </ul>
+                <div id="venueInfo" class="venue-info" style="display: none;">
+                    <h3>Venue & Timing</h3>
+                    <div id="venueDetails"></div>
+                </div>
+                <div id="instructionsInfo" class="instructions-info" style="display: none;">
+                    <h3>Instructions</h3>
+                    <div id="instructionsDetails"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events & Lots Tab -->
+        <div class="tab-content" id="events-content">
+            <div class="dashboard-card">
+                <h2>Participants & Events</h2>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Participant Name</th>
+                                <th>Events</th>
+                                <th>Lot Numbers</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participantsTableBody">
+                            <!-- Will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Food Tokens Tab -->
+        <div class="tab-content" id="food-content">
+            <div class="dashboard-card">
+                <h2>Food Tokens</h2>
+                <p class="info-text">Total Food Tokens: <strong id="foodTokenCount">0</strong> (Participants + Staff)
+                </p>
+                <div id="foodTokenQR" class="qr-container">
+                    <!-- QR code will be generated here -->
+                </div>
+                <p class="info-text">Present this QR code at the food counter</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+    <!-- QRCode library with fallback -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"
+        onerror="this.onerror=null; this.src='https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js';"></script>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/qr-generator.js"></script>
+    <script src="js/dashboard-participant.js"></script>
+</body>
+
+</html>

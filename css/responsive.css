@@ -1,0 +1,151 @@
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: var(--primary-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: var(--shadow);
+        padding: 2rem 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .overview-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-tabs {
+        flex-direction: column;
+    }
+
+    .dashboard-tabs .tab-btn {
+        width: 100%;
+        text-align: left;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-filter {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-filter input,
+    .search-filter select {
+        width: 100%;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reports-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .data-table {
+        font-size: 0.9rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.5rem;
+    }
+
+    .modal-content {
+        margin: 10% auto;
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    .login-wrapper {
+        padding: 2rem 1.5rem;
+    }
+
+    .login-tabs {
+        flex-direction: column;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+    }
+
+    .dashboard-actions .btn {
+        width: 100%;
+    }
+
+    /* In redeemed tokens table, hide Actions column and show inline mobile delete button */
+    #redeemedTable th:nth-child(6),
+    #redeemedTable td:nth-child(6) {
+        display: none;
+    }
+
+    .mobile-delete-btn {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .overview-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card-value {
+        font-size: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+}

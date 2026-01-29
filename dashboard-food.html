@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Coordinator Dashboard - INTEGRA 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>INTEGRA 2026 - Food Coordinator</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container dashboard-container">
+        <div class="dashboard-header">
+            <h1>Food Coordinator Dashboard</h1>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- College List & Totals -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>College List & Food Count</h2>
+                    <div class="search-filter">
+                        <input type="text" id="searchFoodColleges" placeholder="Search college...">
+                    </div>
+                </div>
+                <p class="info-text">
+                    Total Tokens: <strong id="foodTotalTokens">0</strong> ·
+                    Redeemed: <strong id="foodTotalRedeemed">0</strong> ·
+                    Remaining: <strong id="foodTotalRemaining">0</strong>
+                </p>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>College</th>
+                                <th>Food Token Count</th>
+                                <th>Redeemed</th>
+                                <th>Remaining</th>
+                            </tr>
+                        </thead>
+                        <tbody id="collegeTableBody">
+                            <!-- Will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- QR Scanner -->
+            <div class="dashboard-card">
+                <h2>QR Code Scanner</h2>
+                <p class="info-text">Scan QR code from participants to verify and prevent duplicate redemption.</p>
+                <div id="scannerContainer" class="scanner-container">
+                    <div id="qr-reader"></div>
+                    <button class="btn btn-primary" id="startScannerBtn">Start Scanner</button>
+                    <button class="btn btn-secondary" id="stopScannerBtn" style="display: none;">Stop Scanner</button>
+                </div>
+                <div id="scanResult" class="scan-result"></div>
+            </div>
+
+            <!-- Redeemed Tokens List -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Recent Redeemed Tokens</h2>
+                    <div class="search-filter">
+                        <input type="text" id="searchFoodRedeemed" placeholder="Search reg id / college / token id...">
+                    </div>
+                </div>
+                <p class="info-text">Shows the latest 100 redemptions.</p>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Reg ID</th>
+                                <th>College</th>
+                                <th>Token ID</th>
+                                <th>Redeemed At</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="redeemedTableBody">
+                            <!-- Will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"
+        onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js';"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/qr-scanner.js"></script>
+    <script src="js/dashboard-food.js"></script>
+</body>
+
+</html>
